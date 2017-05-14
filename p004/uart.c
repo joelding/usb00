@@ -19,7 +19,7 @@ void uart_isr(void) __interrupt (4) __using (1)
 	}
 }
 
-void uart_init(unsigned long baudrate)
+void uart_init(u32 baudrate)
 {
 #if ((PARITY_BIT == PARITY_ODD) || \
      (PARITY_BIT == PARITY_EVEN) || \
@@ -64,5 +64,6 @@ void putchar(char c)
 	is_tx_busy = 1;
 	SBUF = ACC;
 }
+
 
 

@@ -11,8 +11,8 @@ Exercises on 圈圈教你玩USB with SDCC
 * 2017/03/09 p002
   Learn how to implement printf.
 * 2017/05/06 move to a new branch and restart again
-* 2017/05/10 p003
-  Modulize codes.
+* 2017/05/10 p003 modulize codes. note: "If you have multiple source files in your project, interrupt service routines can be present in any of them, but a prototype of the isr MUST be present or included in the file that contains the function main.
+* 2017/05/14 p004 add key
 
 installation
 $ sudo apt-get install -y sdcc
