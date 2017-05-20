@@ -34,7 +34,8 @@ void uart_init(u32 baudrate)
 
 	TMOD &= 0x0F; /* set timer 1 as mode 2, autoload */
 	TMOD |= 0x20;
-	TH1 = TL1 = 256 - (FCLK / (12 * 16 * baudrate));
+//	TH1 = TL1 = 256 - (FCLK / (12 * 16 * baudrate));
+	TH1 = TL1 = 256 - (FCLK / 12 / 16 / baudrate);
 //	tmr1_init(MOD_8B_RELOAD, 
 //		  256 - (FCLK / 12 / 16 / baudrate), 0);
 	PCON |= 0x80;

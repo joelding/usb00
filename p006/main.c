@@ -22,7 +22,7 @@ u32 val;
 	while (1) {
 		val = get_clk();
 
-		if (!(val & 0x3FF)) P2 = ~P2;
+		if (!(val & 0xF)) P2 = ~P2;
 
 		usbd12_isr_handler(&g_isr);
 	}
