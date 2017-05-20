@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct _isr_status g_isr;
+
 void delayms(u16 x)
 {
 	u16 i, j;

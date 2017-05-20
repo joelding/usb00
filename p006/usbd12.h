@@ -78,7 +78,7 @@
 #define READ_ID (0xFD)
 
 u8 usbd12_read_byte(void);
-void usbd12_write_cmd(u8 cmd);
+void usbd12_write_byte(u8 type, u8 cmd);
 u16 usbd12_read_id(void);
 void usbd12_bus_change(void);
 void usbd12_bus_reset(void);
@@ -89,6 +89,7 @@ void usbd12_ep1_out(void);
 void usbd12_ep0_in(void);
 void usbd12_ep0_out(void);
 void usbd12_is_plugin(bool is_plugin);
+void usbd12_isr_handler(void *arg);
 
 #endif /* _USBUSBD12_H_ */
 

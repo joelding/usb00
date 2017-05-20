@@ -1,8 +1,9 @@
 #include "uart.h"
+//#include "tmr.h"
 
 static unsigned char is_tx_busy = 0;
 
-void uart_isr(void) __interrupt (4) __using (1)
+void uart_isr(void) __interrupt (4) // __using (1)
 {
 	char c = SBUF;
 
@@ -34,6 +35,8 @@ void uart_init(u32 baudrate)
 	TMOD &= 0x0F; /* set timer 1 as mode 2, autoload */
 	TMOD |= 0x20;
 	TH1 = TL1 = 256 - (FCLK / (12 * 16 * baudrate));
+//	tmr1_init(MOD_8B_RELOAD, 
+//		  256 - (FCLK / 12 / 16 / baudrate), 0);
 	PCON |= 0x80;
 	ES = 1; /* enable uart interrupt */
 	TR1 = 1; /* start timer 1 */

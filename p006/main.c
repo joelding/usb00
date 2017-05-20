@@ -1,14 +1,18 @@
+#include "common.h"
 #include "uart.h"
-#include "key.h"
+#include "tmr.h"
 #include "usbd12.h"
+#include "extint.h"
 
 void main(void)
 {
-	u8 keyval[2] = {0};
+//	u8 keyval[2] = {0};
+u32 val;
 
 	uart_init(115200UL);
-	key_init();
-	P2 = 0xff;
+	tmr0_init();
+	extint_init(INT0, TRIGGER_FALLING_EDGE);
+	P2 = 0x55;
 	EA = 1;
 	
 	printf("build: %s %s\r\n", __TIME__, __DATE__);	
@@ -16,17 +20,11 @@ void main(void)
 	printf("USBD12 0x%04X\r\n", usbd12_read_id());
 
 	while (1) {
-#if 0
-		if (!toggle) {
-			val = ~val;
-			P2 = val;
-		} 
-#endif
-		keyval[1] = key_get_val();
-		if (keyval[0] != keyval[1]) {
-			keyval[0] = keyval[1];
-			printf("%02X\r\n", keyval[0]);
-		}
+		val = get_clk();
+
+		if (!(val & 0x3FF)) P2 = ~P2;
+
+		usbd12_isr_handler(&g_isr);
 	}
 }
 

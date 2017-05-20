@@ -13,7 +13,9 @@
 
 void extint_init(u8 pin, u8 trigger_type);
 void extint0_isr(void) __interrupt (0);
+#if 0
 void extint1_isr(void) __interrupt (2);
+#endif
 
 #endif /* _EXTINT_H_ */
 
