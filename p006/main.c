@@ -2,16 +2,16 @@
 #include "uart.h"
 #include "tmr.h"
 #include "usbd12.h"
-#include "extint.h"
+//#include "extint.h"
 
 void main(void)
 {
 //	u8 keyval[2] = {0};
 u32 val;
-
+u8 intpin;
 	uart_init(115200UL);
 	tmr0_init();
-	extint_init(INT0, TRIGGER_FALLING_EDGE);
+//	extint_init(INT0, TRIGGER_FALLING_EDGE);
 	P2 = 0x55;
 	EA = 1;
 	
@@ -24,7 +24,10 @@ u32 val;
 
 		if (!(val & 0xF)) P2 = ~P2;
 
-		usbd12_isr_handler(&g_isr);
+		intpin = USBD12_INT;		
+		if (!intpin) {
+			usbd12_isr_handler();
+		}
 	}
 }
 

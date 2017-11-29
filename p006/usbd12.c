@@ -53,10 +53,18 @@ void usbd12_is_plugin(bool is_plugin)
 	}
 }
 
-void usbd12_isr_handler(void *arg)
+//void usbd12_isr_handler(void *arg)
+void usbd12_isr_handler(void)
 {
-	u8 val = ((struct _isr_status *)arg)->usbd12_intreg[0];
+//	u8 val = ((struct _isr_status *)arg)->usbd12_intreg[0];
+	u8 val = 0;
 
+	usbd12_write_byte(CMD, READ_INT_REG);
+	g_isr.usbd12_intreg[0] = usbd12_read_byte();
+	g_isr.usbd12_intreg[1] = usbd12_read_byte();
+
+   	val = g_isr.usbd12_intreg[0];
+printf("val=%d\r\n", val);
 	if (val & SUSPEND_CHANGE) {
 		//TODO
 		printf("SUSPEND_CHANGE\r\n");
@@ -93,6 +101,6 @@ void usbd12_isr_handler(void *arg)
 		printf("EP0_OUT\r\n");
 	}
 	
-	((struct _isr_status *)arg)->usbd12_intreg[0] = 0;
+//	((struct _isr_status *)arg)->usbd12_intreg[0] = 0;
 }
 

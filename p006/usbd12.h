@@ -87,7 +87,8 @@ void usbd12_ep1_out(void);
 void usbd12_ep0_in(void);
 void usbd12_ep0_out(void);
 void usbd12_is_plugin(bool is_plugin);
-void usbd12_isr_handler(void *arg);
+//void usbd12_isr_handler(void *arg);
+void usbd12_isr_handler(void);
 
 #endif /* _USBUSBD12_H_ */
 
