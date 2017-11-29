@@ -58,10 +58,8 @@
  * #define READ_EP_STATUS ()
  * 0x80 to 0x85
  */
-/* TODO
- * #define READ_LAST_TRANSACT_STATUS_REG ()
- * 0x40 to 0x45
- */
+
+#define READ_LAST_TRANSACT_STATUS_REG (0x40) /* 0x40 to 0x45 */
 #define READ_BUFFER (0xF0)
 #define WRITE_BUFFER (0xF0)
 #define CLEAR_BUFFER (0xF2)
