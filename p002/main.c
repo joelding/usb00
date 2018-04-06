@@ -125,7 +125,7 @@ void main(void)
 	EA = 1;
 	printf("build: %s %s\r\n", __TIME__, __DATE__);	
 	while (1) {
-#if 0
+#if 1 
 		if (!toggle) {
 			val = ~val;
 			P2 = val;
