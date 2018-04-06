@@ -22,7 +22,8 @@ all : rom.hex
 rom.hex : $(OBJS)
 	$(CC) -o $(patsubst %.hex,%.ihx,$@) $(LFLAGS) $(LIBS) $^ 
 	packihx rom.ihx > rom.hex
-	objcopy -Iihex -Obinary rom.hex rom.bin
+	#objcopy -Iihex -Obinary rom.hex rom.bin
+	makebin -p rom.hex rom.bin
 
 %.rel : %.c
 	$(CC) $(CFLAGS) $< 

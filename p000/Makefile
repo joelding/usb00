@@ -22,9 +22,11 @@ all : rom.hex
 rom.hex : $(OBJS)
 	$(CC) -o $(patsubst %.hex,%.ihx,$@) $(LFLAGS) $(LIBS) $^ 
 	packihx rom.ihx > rom.hex
+	#objcopy -Iihex -Obinary rom.hex rom.bin
+	makebin -p rom.hex rom.bin
 
 %.rel : %.c
 	$(CC) $(CFLAGS) $< 
 
 clean:
-	$(RM) -f *.rel *.s *.asm *.lst *.sym *.rst *.txt *.mem *.map *.lk *.ihx *.hex
+	$(RM) -f *.rel *.s *.asm *.lst *.sym *.rst *.txt *.mem *.map *.lk *.ihx *.hex *.bin

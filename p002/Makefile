@@ -18,15 +18,13 @@ LFLAGS = $(VERBOSE) $(TARGET) --iram-size 256 --xram-size 1024 --code-size 8192
 LIBS = 
 RM = rm
 
-all : rom.bin
-
-rom.bin : rom.hex
-#	objcopy -Iihex -Obinary rom.hex rom.bin
-	makebin -p rom.hex test.bin
+all : rom.hex
 
 rom.hex : $(OBJS)
 	$(CC) -o $(patsubst %.hex,%.ihx,$@) $(LFLAGS) $(LIBS) $^ 
 	packihx rom.ihx > rom.hex
+	#objcopy -Iihex -Obinary rom.hex rom.bin
+	makebin -p rom.hex rom.bin
 
 %.rel : %.c
 	$(CC) $(CFLAGS) $< 

@@ -23,6 +23,7 @@ void main(void)
 		if (keyval[0] != keyval[1]) {
 			keyval[0] = keyval[1];
 			printf("%02X\r\n", keyval[0]);
+			P2 = ~keyval[0];
 		}
 	}
 }
