@@ -16,7 +16,7 @@
  * long: 4 bytes
  * float: 4 bytes
  */
-typedef _Bool bool;
+//typedef _Bool bool;
 typedef unsigned char u8;
 typedef char s8;
 //typedef unsigned short u16;
